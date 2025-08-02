@@ -157,12 +157,18 @@ async function doStartServer() {
             serverOptions.args = parameters;
         }
 
+        if (!serverOptions.options || !serverOptions.options.env) {
+            serverOptions.options = { env: {} }
+        }
+
         let globalConfigPath = config.get<string>("emmylua.misc.globalConfigPath")?.trim();
         if (globalConfigPath && globalConfigPath.length > 0) {
-            if (!serverOptions.options || !serverOptions.options.env) {
-                serverOptions.options = { env: {} }
-            }
             serverOptions.options.env['EMMYLUALS_CONFIG'] = globalConfigPath;
+        }
+
+        let highlightCommentsMarkup = config.get<string>("emmylua.colors.highlightCommentsMarkup");
+        if (highlightCommentsMarkup) {
+            serverOptions.options.env['EMMYLUALS_COMMENTS_MARKUP'] = highlightCommentsMarkup;
         }
     }
 

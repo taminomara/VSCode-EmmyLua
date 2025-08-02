@@ -289,6 +289,32 @@
                     "default": true,
                     "markdownDescription": "%config.colors.mutableUnderline.description%"
                 },
+                "emmylua.colors.highlightCommentsMarkup": {
+                    "type": "string",
+                    "enum": [
+                        "emmyrc",
+                        "off",
+                        "md",
+                        "myst",
+                        "rst"
+                    ],
+                    "enumItemLabels": [
+                        "%config.colors.highlightCommentsMarkup.description.emmyrc.title%",
+                        "%config.colors.highlightCommentsMarkup.description.off.title%",
+                        "%config.colors.highlightCommentsMarkup.description.md.title%",
+                        "%config.colors.highlightCommentsMarkup.description.myst.title%",
+                        "%config.colors.highlightCommentsMarkup.description.rst.title%"
+                    ],
+                    "markdownEnumDescriptions": [
+                        "%config.colors.highlightCommentsMarkup.description.emmyrc%",
+                        "%config.colors.highlightCommentsMarkup.description.off%",
+                        "%config.colors.highlightCommentsMarkup.description.md%",
+                        "%config.colors.highlightCommentsMarkup.description.myst%",
+                        "%config.colors.highlightCommentsMarkup.description.rst%"
+                    ],
+                    "default": "emmyrc",
+                    "markdownDescription": "%config.colors.highlightCommentsMarkup.description%"
+                },
                 "emmylua.misc.autoInsertTripleDash": {
                     "type": "boolean",
                     "default": true,
