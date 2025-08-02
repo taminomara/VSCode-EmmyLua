@@ -55,7 +55,36 @@ function updateDecorations() {
     D_PARAM = createDecoration("colors.parameter");
     D_GLOBAL = createDecoration("colors.global");
     D_LOCAL = createDecoration("colors.local");
-    let mutable_underline = vscode.workspace.getConfiguration("emmylua").get("colors.mutable_underline");
+    let config = vscode.workspace.getConfiguration("emmylua");
+    if (config.has("colors.mutable_underline")) {
+        let mutable_underline = config.inspect("colors.mutable_underline");
+        if (mutable_underline?.globalValue !== undefined) {
+            config.update("colors.mutableUnderline", mutable_underline.globalValue, vscode.ConfigurationTarget.Global, false);
+            config.update("colors.mutable_underline", undefined, vscode.ConfigurationTarget.Global, false);
+        }
+        if (mutable_underline?.workspaceValue !== undefined) {
+            config.update("colors.mutableUnderline", mutable_underline.workspaceValue, vscode.ConfigurationTarget.Workspace, false);
+            config.update("colors.mutable_underline", undefined, vscode.ConfigurationTarget.Workspace, false);
+        }
+        if (mutable_underline?.workspaceFolderValue !== undefined) {
+            config.update("colors.mutableUnderline", mutable_underline.workspaceFolderValue, vscode.ConfigurationTarget.WorkspaceFolder, false);
+            config.update("colors.mutable_underline", undefined, vscode.ConfigurationTarget.WorkspaceFolder, false);
+        }
+        if (mutable_underline?.globalLanguageValue !== undefined) {
+            config.update("colors.mutableUnderline", mutable_underline.globalValue, vscode.ConfigurationTarget.Global, true);
+            config.update("colors.mutable_underline", undefined, vscode.ConfigurationTarget.Global, true);
+        }
+        if (mutable_underline?.workspaceLanguageValue !== undefined) {
+            config.update("colors.mutableUnderline", mutable_underline.workspaceValue, vscode.ConfigurationTarget.Workspace, true);
+            config.update("colors.mutable_underline", undefined, vscode.ConfigurationTarget.Workspace, true);
+        }
+        if (mutable_underline?.workspaceFolderLanguageValue !== undefined) {
+            config.update("colors.mutableUnderline", mutable_underline.workspaceFolderValue, vscode.ConfigurationTarget.WorkspaceFolder, true);
+            config.update("colors.mutable_underline", undefined, vscode.ConfigurationTarget.WorkspaceFolder, true);
+        }
+    }
+
+    let mutable_underline = config.get("colors.mutableUnderline");
     if (mutable_underline) {
         D_MUT_LOCAL = createDecorationUnderline("colors.local");
         D_MUT_PARAM = createDecorationUnderline("colors.parameter");

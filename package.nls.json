@@ -5,7 +5,7 @@
     "debug.attach.desc": "Attach process debugger",
     "debug.attach.target_process": "Attach process by name",
     "debug.attach.captureLog": "Capture process log with Windows Terminal",
-    
+
     "debug.launch.label": "EmmyLua: Attach by launch program",
     "debug.launch.name": "Attach by launch program",
     "debug.launch.desc": "Launch program and debug with attach debugger",
@@ -14,8 +14,14 @@
     "debug.launch.arguments": "arguments pass to executable file",
     "debug.launch.blockOnExit": "block process when exit",
     "debug.launch.newWindow": "create new windows",
-    "config.autoInsertTripleDash.description": "Automatically insert \"---\" when line breaking after a comment",
-    "config.misc.executablePath": "Specify the executable file path in VSCode",
-    "config.develop.port": "Specify the port for the debugger to listen on",
-    "config.misc.globalConfigPath": "Specify a path to the global configuration file"
+
+    "config.colors.parameter.description": "If not empty, highlights function parameters with the given color",
+    "config.colors.global.description": "If not empty, highlights global variables with the given color",
+    "config.colors.local.description": "If not empty, highlights local variables with the given color",
+    "config.colors.mutableUnderline.description": "Add underline to variables if they're reassigned within their scope",
+    "config.misc.autoInsertTripleDash.description": "Automatically insert `\"---\"` when line breaking after a comment",
+    "config.ls.startParameters.description": "Additional arguments to be passed to the EmmyLua language server",
+    "config.misc.executablePath.description": "Override path to the EmmyLua language server executable.\n\nUses bundled language server if not specified",
+    "config.misc.globalConfigPath.description": "Path to the global `.emmyrc.json`.\n\nSettings from this file will be used if they're not overridden by the project's `.emmyrc.json`",
+    "config.trace.server.description": "Traces the communication between VSCode and the EmmyLua language server in the Output view. Default is `off`"
 }

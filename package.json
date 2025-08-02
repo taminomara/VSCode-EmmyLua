@@ -266,44 +266,48 @@
             "properties": {
                 "emmylua.colors.parameter": {
                     "type": "string",
-                    "default": "#9FFC"
+                    "default": "#9FFC",
+                    "markdownDescription": "%config.colors.parameter.description%"
                 },
                 "emmylua.colors.global": {
                     "type": "string",
-                    "default": "#FF6699"
+                    "default": "#FF6699",
+                    "markdownDescription": "%config.colors.global.description%"
                 },
                 "emmylua.colors.local": {
                     "type": "string",
-                    "default": ""
+                    "default": "",
+                    "markdownDescription": "%config.colors.local.description%"
                 },
                 "emmylua.colors.mutable_underline": {
                     "type": "boolean",
+                    "markdownDescription": "%config.colors.mutableUnderline.description%",
+                    "markdownDeprecationMessage": "Use `emmylua.colors.mutableUnderline` instead"
+                },
+                "emmylua.colors.mutableUnderline": {
+                    "type": "boolean",
                     "default": true,
-                    "description": "Mutable variable underline"
-                },
-                "emmylua.develop.port" : {
-                    "type": "number",
-                    "default": 5007,
-                    "description": "%config.develop.port%"
-                },
-                "emmylua.ls.startParameters": {
-                    "type": "array",
-                    "default": []
+                    "markdownDescription": "%config.colors.mutableUnderline.description%"
                 },
                 "emmylua.misc.autoInsertTripleDash": {
                     "type": "boolean",
                     "default": true,
-                    "description": "%config.autoInsertTripleDash.description%"
+                    "markdownDescription": "%config.misc.autoInsertTripleDash.description%"
+                },
+                "emmylua.ls.startParameters": {
+                    "type": "array",
+                    "default": [],
+                    "markdownDescription": "%config.ls.startParameters.description%"
                 },
                 "emmylua.misc.executablePath": {
                     "type": "string",
                     "default": "",
-                    "description": "%config.misc.executablePath%"
+                    "markdownDescription": "%config.misc.executablePath.description%"
                 },
                 "emmylua.misc.globalConfigPath": {
                     "type": "string",
                     "default": "",
-                    "description": "%config.misc.globalConfigPath%"
+                    "markdownDescription": "%config.misc.globalConfigPath.description%"
                 },
                 "lua.trace.server": {
                     "type": "string",
@@ -313,8 +317,8 @@
                         "verbose"
                     ],
                     "default": "off",
-                    "markdownDescription": "Traces the communication between VS Code and the EmmyLua language server in the Output view. Default is `off`.",
-                    "scope": "window"
+                    "scope": "window",
+                    "markdownDescription": "%config.trace.server.description%"
                 }
             }
         },
@@ -324,7 +328,8 @@
                     "other": true,
                     "comments": true,
                     "strings": true
-                }
+                },
+                "editor.wordBasedSuggestions": "off"
             }
         },
         "jsonValidation": [
