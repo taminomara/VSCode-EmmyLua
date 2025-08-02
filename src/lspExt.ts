@@ -10,6 +10,8 @@ export enum AnnotatorType {
     ReadOnlyLocal,
     MutLocal,
     MutParam,
+    Em,
+    Strong,
 }
 
 export interface IAnnotator {

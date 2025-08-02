@@ -9,6 +9,8 @@ let D_GLOBAL: vscode.TextEditorDecorationType;
 let D_LOCAL: vscode.TextEditorDecorationType;
 let D_MUT_LOCAL: vscode.TextEditorDecorationType;
 let D_MUT_PARAM: vscode.TextEditorDecorationType;
+let D_EM: vscode.TextEditorDecorationType;
+let D_STRONG: vscode.TextEditorDecorationType;
 
 function createDecoration(key: string): vscode.TextEditorDecorationType {
     let config: vscode.DecorationRenderOptions = {}
@@ -43,13 +45,37 @@ function createDecorationUnderline(key: string): vscode.TextEditorDecorationType
     return vscode.window.createTextEditorDecorationType(config);
 }
 
+function createDecorationEm(): vscode.TextEditorDecorationType {
+    let config: vscode.DecorationRenderOptions = {
+        light: {
+            fontStyle: "italic"
+        },
+        dark: {
+            fontStyle: "italic"
+        }
+    }
+    return vscode.window.createTextEditorDecorationType(config);
+}
+
+function createDecorationStrong(): vscode.TextEditorDecorationType {
+    let config: vscode.DecorationRenderOptions = {
+        light: {
+            fontWeight: "bold"
+        },
+        dark: {
+            fontWeight: "bold"
+        }
+    }
+    return vscode.window.createTextEditorDecorationType(config);
+}
+
 function disposeDecorations(...decorations: (vscode.TextEditorDecorationType | undefined)[]) {
     decorations.forEach(d => d && d.dispose());
 }
 
 function updateDecorations() {
     if (D_PARAM) {
-        disposeDecorations(D_PARAM, D_GLOBAL, D_LOCAL, D_MUT_LOCAL, D_MUT_PARAM);
+        disposeDecorations(D_PARAM, D_GLOBAL, D_LOCAL, D_MUT_LOCAL, D_MUT_PARAM, D_EM, D_STRONG);
     }
 
     D_PARAM = createDecoration("colors.parameter");
@@ -93,6 +119,9 @@ function updateDecorations() {
         D_MUT_LOCAL = createDecoration("colors.local");
         D_MUT_PARAM = createDecoration("colors.parameter");
     }
+
+    D_EM = createDecorationEm();
+    D_STRONG = createDecorationStrong();
 }
 
 export function onDidChangeConfiguration() {
@@ -121,6 +150,8 @@ function requestAnnotatorsImpl(editor: vscode.TextEditor, client: LanguageClient
         map.set(AnnotatorType.ReadOnlyLocal, []);
         map.set(AnnotatorType.MutLocal, []);
         map.set(AnnotatorType.MutParam, []);
+        map.set(AnnotatorType.Em, []);
+        map.set(AnnotatorType.Strong, []);
 
         if (!list) {
             return;
@@ -154,6 +185,12 @@ function updateAnnotators(editor: vscode.TextEditor, type: AnnotatorType, ranges
             break;
         case AnnotatorType.MutParam:
             editor.setDecorations(D_MUT_PARAM, ranges);
+            break;
+        case AnnotatorType.Em:
+            editor.setDecorations(D_EM, ranges);
+            break;
+        case AnnotatorType.Strong:
+            editor.setDecorations(D_STRONG, ranges);
             break;
     }
 }
